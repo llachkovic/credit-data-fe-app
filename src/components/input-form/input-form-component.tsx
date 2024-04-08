@@ -40,12 +40,16 @@ export const InputForm: React.FC = () => {
                                 }))}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Checking Account Status' }}
                     />
                     <ControlledFormElement
                         control={form.control}
                         name="durationInMonths"
-                        render={(field) => <InputNumber {...field} />}
+                        render={(field) => (
+                            <InputNumber {...field} addonAfter="months" />
+                        )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Duration in Months' }}
                     />
                     <ControlledFormElement
@@ -62,6 +66,7 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Credit History' }}
                     />
                     <ControlledFormElement
@@ -78,12 +83,20 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Purpose' }}
                     />
                     <ControlledFormElement
                         control={form.control}
                         name="creditAmount"
-                        render={(field) => <InputNumber {...field} />}
+                        render={(field) => (
+                            <InputNumber
+                                {...field}
+                                step={100}
+                                addonAfter="EUR"
+                            />
+                        )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Credit Amount' }}
                     />
                     <ControlledFormElement
@@ -100,6 +113,7 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Savings Account' }}
                     />
                     <ControlledFormElement
@@ -116,12 +130,22 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Employment Duration' }}
                     />
                     <ControlledFormElement
                         control={form.control}
                         name="installmentRate"
-                        render={(field) => <InputNumber {...field} />}
+                        render={(field) => (
+                            <InputNumber
+                                {...field}
+                                formatter={(value) => `${value}%`}
+                                parser={(value) => value!.replace('%', '')}
+                                min={0}
+                                max={100}
+                            />
+                        )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Installment Rate' }}
                     />
                     <ControlledFormElement
@@ -138,6 +162,7 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Personal Status' }}
                     />
                     <ControlledFormElement
@@ -154,12 +179,16 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'OtherDebtors' }}
                     />
                     <ControlledFormElement
                         control={form.control}
                         name="presentResidenceSince"
-                        render={(field) => <InputNumber {...field} />}
+                        render={(field) => (
+                            <InputNumber {...field} addonAfter="months" />
+                        )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Present Residence Since' }}
                     />
                     <ControlledFormElement
@@ -176,12 +205,14 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Property' }}
                     />
                     <ControlledFormElement
                         control={form.control}
                         name="age"
-                        render={(field) => <InputNumber {...field} />}
+                        render={(field) => <InputNumber {...field} min={18} />}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Age' }}
                     />
                     <ControlledFormElement
@@ -198,6 +229,7 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Other Installment Plans' }}
                     />
                     <ControlledFormElement
@@ -214,12 +246,14 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Housing' }}
                     />
                     <ControlledFormElement
                         control={form.control}
                         name="numberOfExistingCredits"
                         render={(field) => <InputNumber {...field} />}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Number of Existing Credits' }}
                     />
                     <ControlledFormElement
@@ -236,12 +270,14 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Job' }}
                     />
                     <ControlledFormElement
                         control={form.control}
                         name="numberOfPeopleLiableForMaintenance"
                         render={(field) => <InputNumber {...field} />}
+                        rules={{ required: 'Required' }}
                         formItemProps={{
                             label: 'Number of People Liable for Maintenance',
                         }}
@@ -260,6 +296,7 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Telephone' }}
                     />
                     <ControlledFormElement
@@ -276,9 +313,15 @@ export const InputForm: React.FC = () => {
                                 )}
                             />
                         )}
+                        rules={{ required: 'Required' }}
                         formItemProps={{ label: 'Foreign Worker' }}
                     />
-                    <Button type="primary" onClick={handleSubmit(handleSave)}>
+                    <Button
+                        type="primary"
+                        onClick={handleSubmit(handleSave)}
+                        disabled={!form.formState.isValid}
+                        loading={form.formState.isSubmitting}
+                    >
                         Submit
                     </Button>
                 </Col>

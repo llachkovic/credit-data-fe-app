@@ -1,17 +1,24 @@
-import { useMutation } from 'react-query'
-import { fetchLoanResult } from '../utils/fetch-loan-result.util.ts'
+import { useMutation, useQueryClient } from 'react-query'
+import { fetchNewLoanResult } from '../utils/fetch-loan-result.util.ts'
 import { CreditApplicationForm } from '../utils/types.ts'
+import { QueryKeys } from '../constants/query-keys.ts'
+import { useNavigate } from 'react-router-dom'
+import { RouteNames } from '../routing/route-names.ts'
 
 export const useModelResultMutation = () => {
-    const { mutateAsync } = useMutation({
-        mutationFn: (value: CreditApplicationForm) => fetchLoanResult(value),
-        onSuccess: () => console.log('success'),
+    const queryClient = useQueryClient()
+    const navigate = useNavigate()
+    const { mutateAsync, ...rest } = useMutation({
+        mutationFn: (value: CreditApplicationForm) => fetchNewLoanResult(value),
+        onSuccess: async (data) => {
+            await queryClient.invalidateQueries({
+                predicate: (query) =>
+                    query.queryKey[0] === QueryKeys.GET_ALL_RESULTS,
+            })
+            navigate(RouteNames.resultUrl(data!.id))
+        },
         onError: () => console.error('error'),
     })
 
-    const getResult = async (value: CreditApplicationForm) => {
-        await mutateAsync(value)
-    }
-
-    return { getResult }
+    return { getResult: mutateAsync, ...rest }
 }

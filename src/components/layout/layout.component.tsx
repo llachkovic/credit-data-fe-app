@@ -42,7 +42,6 @@ export const LayoutComponent: React.FC<LayoutProps> = ({ children }) => {
                     mode="horizontal"
                     style={{ flex: 1, minWidth: 0 }}
                     items={navigationItems}
-                    defaultSelectedKeys={[RouteNames.predict]}
                 />
             </Header>
             <Content style={{ padding: '0 48px', margin: '48px 0' }}>

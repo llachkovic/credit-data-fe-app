@@ -1,6 +1,6 @@
 import { TableProps } from 'antd'
 import { ResultResponse } from '../../utils/fetch-loan-result.util.ts'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { RouteNames } from '../../routing/route-names.ts'
 import { StatusTag, TagValues } from '../status-tag/status-tag.component.tsx'
 
@@ -21,6 +21,13 @@ export const useResultsTable = () => {
                 dataIndex: 'tag',
                 key: 'tag',
                 render: (value: TagValues) => <StatusTag value={value} />,
+            },
+            {
+                title: 'Detail',
+                key: 'detail',
+                render: (_, record) => (
+                    <Link to={RouteNames.resultUrl(record.id)}>View</Link>
+                ),
             },
         ]
 

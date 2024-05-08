@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Input, InputNumber, Row, Select, Typography } from 'antd'
+import { Col, Divider, Input, InputNumber, Row, Select } from 'antd'
 import { ControlledFormElement } from '../controlled-form-element/controlled-form-element.component.tsx'
 import {
     CheckingAccountStatus,
@@ -30,9 +30,7 @@ export const InputForm: React.FC<InputFormProps> = ({ readonly, control }) => {
         <Row>
             <Col span={24}>
                 <Row>
-                    <Typography.Title level={5}>
-                        Credit History
-                    </Typography.Title>
+                    <Divider orientation="left">Credit History</Divider>
                 </Row>
                 <Row gutter={[16, 32]}>
                     <Col span={6}>
@@ -97,7 +95,7 @@ export const InputForm: React.FC<InputFormProps> = ({ readonly, control }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Typography.Title level={5}>Loan</Typography.Title>
+                    <Divider orientation="left">Loan</Divider>
                 </Row>
                 <Row gutter={[16, 32]}>
                     <Col span={6}>
@@ -176,7 +174,7 @@ export const InputForm: React.FC<InputFormProps> = ({ readonly, control }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Typography.Title level={5}>Applicant</Typography.Title>
+                    <Divider orientation="left">Applicant</Divider>
                 </Row>
                 <Row gutter={[16, 32]}>
                     <Col span={6}>
@@ -334,7 +332,7 @@ export const InputForm: React.FC<InputFormProps> = ({ readonly, control }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Typography.Title level={5}>Liabilities</Typography.Title>
+                    <Divider orientation="left">Liabilities</Divider>
                 </Row>
                 <Row gutter={[16, 32]}>
                     <Col span={6}>
@@ -415,7 +413,7 @@ export const InputForm: React.FC<InputFormProps> = ({ readonly, control }) => {
                     </Col>
                 </Row>
                 <Row>
-                    <Typography.Title level={5}>Contact</Typography.Title>
+                    <Divider orientation="left">Contact</Divider>
                 </Row>
                 <Row gutter={[16, 32]}>
                     <Col span={6}>

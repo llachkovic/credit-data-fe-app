@@ -27,7 +27,7 @@ export const DetailFormWrapper: React.FC<DetailFormWrapperProps> = ({
                             style={{ marginRight: '20px' }}
                             onClick={() => navigate(RouteNames.list)}
                         />
-                        Result #{data.id} Detail
+                        Result #{data.id} ({data.email})
                     </Typography.Title>
                 </Col>
                 <Col span={12} style={{ textAlign: 'right' }}>

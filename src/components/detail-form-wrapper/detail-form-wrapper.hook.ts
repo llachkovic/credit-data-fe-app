@@ -27,6 +27,7 @@ export const useDetailFormWrapper = (data: ResultResponse) => {
             purpose: data.purpose,
             savingsAccount: data.savings_account,
             telephone: data.telephone,
+            email: data.email,
         },
     })
 

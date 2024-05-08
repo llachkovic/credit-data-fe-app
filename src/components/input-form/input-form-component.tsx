@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, InputNumber, Row, Select, Typography } from 'antd'
+import { Col, Input, InputNumber, Row, Select, Typography } from 'antd'
 import { ControlledFormElement } from '../controlled-form-element/controlled-form-element.component.tsx'
 import {
     CheckingAccountStatus,
@@ -18,6 +18,7 @@ import {
     Telephone,
 } from '../../utils/types.ts'
 import { Control } from 'react-hook-form'
+import { REGEX_PATTERNS } from '../../constants/regex-patterns.ts'
 
 interface InputFormProps {
     readonly?: boolean
@@ -435,6 +436,20 @@ export const InputForm: React.FC<InputFormProps> = ({ readonly, control }) => {
                             )}
                             rules={{ required: !readonly && 'Required' }}
                             formItemProps={{ label: 'Telephone' }}
+                        />
+                    </Col>
+                    <Col span={6}>
+                        <ControlledFormElement
+                            control={control}
+                            name="email"
+                            render={(field) => (
+                                <Input {...field} disabled={readonly} />
+                            )}
+                            rules={{
+                                required: !readonly && 'Required',
+                                pattern: REGEX_PATTERNS.EMAIL,
+                            }}
+                            formItemProps={{ label: 'Email' }}
                         />
                     </Col>
                 </Row>

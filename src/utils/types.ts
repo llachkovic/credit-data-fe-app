@@ -146,4 +146,5 @@ export interface CreditApplicationForm {
     numberOfPeopleLiableForMaintenance: number
     telephone: Telephone
     foreignWorker: ForeignWorker
+    email: string
 }

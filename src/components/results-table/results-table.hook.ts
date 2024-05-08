@@ -7,6 +7,7 @@ export const useResultsTable = () => {
     const navigate = useNavigate()
     const columns: TableProps<ResultResponse>['columns'] = [
         { title: 'Result ID', dataIndex: 'id', key: 'id' },
+        { title: 'Email', dataIndex: 'email', key: 'email' },
         { title: 'Probability', dataIndex: 'probability', key: 'probability' },
     ]
 

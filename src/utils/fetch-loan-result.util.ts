@@ -38,6 +38,7 @@ export interface ResultResponse {
     number_of_people_liable_for_maintenance: number
     telephone: Telephone
     foreign_worker: ForeignWorker
+    email: string
 }
 
 export const fetchNewLoanResult = async (payload: CreditApplicationForm) => {

@@ -1,10 +1,26 @@
 import { useResultsTable } from './results-table.hook.tsx'
 import { useResultListQuery } from '../../hooks/result-list-query.hook.ts'
-import { Table } from 'antd'
+import { Alert, Col, Row, Table } from 'antd'
+import React from 'react'
 
-export const ResultsTable = () => {
+export const ResultsTable: React.FC = () => {
     const { columns, rowProps, createDataWithResultTag } = useResultsTable()
-    const { data, isFetching } = useResultListQuery()
+    const { data, isFetching, isError } = useResultListQuery()
+
+    if (isError) {
+        return (
+            <Row>
+                <Col>
+                    <Alert
+                        showIcon
+                        type="error"
+                        message="Loading Error"
+                        description="Result list could not be loaded at the moment. Try again later."
+                    />
+                </Col>
+            </Row>
+        )
+    }
 
     return (
         <Table

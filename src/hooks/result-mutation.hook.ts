@@ -4,6 +4,7 @@ import { CreditApplicationForm } from '../utils/types.ts'
 import { QueryKeys } from '../constants/query-keys.ts'
 import { useNavigate } from 'react-router-dom'
 import { RouteNames } from '../routing/route-names.ts'
+import { notification } from 'antd'
 
 export const useModelResultMutation = () => {
     const queryClient = useQueryClient()
@@ -16,8 +17,11 @@ export const useModelResultMutation = () => {
                     query.queryKey[0] === QueryKeys.GET_ALL_RESULTS,
             })
             navigate(RouteNames.resultUrl(data!.id))
+            notification.success({
+                message: 'Prediction successfully computed!',
+            })
         },
-        onError: () => console.error('error'),
+        onError: () => notification.error({ message: 'An error occurred.' }),
     })
 
     return { getResult: mutateAsync, ...rest }
